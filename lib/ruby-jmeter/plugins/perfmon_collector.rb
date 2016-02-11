@@ -50,6 +50,7 @@ module RubyJmeter
           </kg.apc.jmeter.perfmon.PerfMonCollector>
         XML
         update params
+        update_at_xpath params if params.is_a?(Hash) && params[:update_at_xpath]
       end
 
       private

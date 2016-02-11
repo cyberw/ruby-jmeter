@@ -1081,7 +1081,11 @@ describe 'DSL' do
                 {server: '2.2.2.2', port: 4444, metric: 'CPU', parameters: ''}
               ],
             filename: 'perf.jtl',
-            xml: false
+            xml: false,
+            update_at_xpath: [
+              { '//fieldNames' => 'true' }
+            ]
+
           end
         end.to_doc
       end
@@ -1095,6 +1099,10 @@ describe 'DSL' do
 
       it 'should match on xml flag' do
         fragment.search(".//xml").first.text.should == 'false'
+      end
+
+      it 'should match on fieldNames flag (set using update_at_xpath syntax)' do
+        fragment.search(".//fieldNames").first.text.should == 'true'
       end
 
       it 'should match on first server ip' do
