@@ -553,6 +553,11 @@ module RubyJmeter
 
       cmd = "#{params[:path]}jmeter #{"-n" unless params[:gui] } -t #{params[:file]} -j #{params[:log] ? params[:log] : 'jmeter.log' } -l #{params[:jtl] ? params[:jtl] : 'jmeter.jtl' } #{properties} #{remote_hosts}"
       logger.debug cmd if params[:debug]
+
+      # ensure ruby never buffers jmeter output
+      STDOUT.sync = true
+      STDERR.sync = true
+
       Open3.popen2e("#{cmd}") do |stdin, stdout_err, wait_thr|
         while line = stdout_err.gets
           logger.debug line.chomp if params[:debug]
