@@ -181,10 +181,6 @@
   `html_assertion`
 - JSR223 Assertion
   `jsr223_assertion`
-- JSR223 Assertion
-  `jsr223_assertion`
-- MD5Hex Assertion
-  `md5hex_assertion`
 - MD5Hex Assertion
   `md5hex_assertion`
 - Response Assertion
