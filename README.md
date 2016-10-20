@@ -23,7 +23,6 @@ Install it yourself as:
 To use the DSL, first let's require the gem:
 
 ```ruby
-require 'rubygems'
 require 'ruby-jmeter'
 ```
 
@@ -87,7 +86,7 @@ test do
 end.run
 ```
 
-This will launch JMeter in headless (non-GUI mode) and execute the test plan. This is useful for shaking out the script before you push it to the Grid. There are a few parameters that you can set such as the `path` to the JMeter binary, the `file` path/name for the JMX file, the `log` path/name to output JMeter logs and the `jtl` path/name for JMeter results like this.
+This will launch JMeter in headless (non-GUI mode) and execute the test plan. This is useful for shaking out the script before you push it to the Grid. There are a few parameters that you can set such as the `path` to the JMeter binary, the `file` path/name for the JMX file, the `log` path/name to output JMeter logs, the `jtl` path/name for JMeter results like this, and the `properties` path/name for the additional JMeter property file.
 
 ```ruby
 test do
@@ -98,7 +97,8 @@ end.run(
   path: '/usr/share/jmeter/bin/',
   file: 'jmeter.jmx',
   log: 'jmeter.log',
-  jtl: 'results.jtl')
+  jtl: 'results.jtl',
+  properties: 'jmeter.properties')
 ```
 
 ### Running a JMeter Test Plan on Flood IO
@@ -413,7 +413,7 @@ You **should never manually update** code in `lib/ruby-jmeter/dsl` as this is au
 
 ### DSL
 
-Much of the behaviour of the gem is defined in `lib/ruby-jmeter/dsl.rb` which is where you should be updating code. This is now a very long module and in much need of refactoring. PR's are welcomed.
+Much of the behaviour of the gem is defined in `lib/ruby-jmeter/dsl.rb` which is where you should be updating code. You can extend individual DSL component behaviour in `live/ruby-jmeter/extend/**/*.rb`
 
 ### Plugins
 
@@ -434,7 +434,7 @@ Then you can run any rake / test tasks with the prefix `bundle exec`
 
 ### Tests
 
-If contributing please add an appropriate test. See `spec/dsl_spec.rb` for examples. Tests can be run from the command line as follows:
+If contributing please add an appropriate test. See `spec/*_spec.rb` for examples. Tests can be run from the command line as follows:
 
     $ bundle exec rspec
 
@@ -449,10 +449,10 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
     $ flood/ruby-jmeter - [master●] » ruby examples/basic_assertion.rb
       W, [2015-10-17T19:31:12.021004 #33216]  WARN -- : Test executing locally ...
 
-Note: most of the examples assume the JMeter binary is installed in `/usr/share/jmeter-2.13/bin/` however you can modify this in your example to something that suits your installation e.g.:
+Note: most of the examples assume the JMeter binary is installed in `/usr/share/jmeter/bin/` however you can modify this in your example to something that suits your installation e.g.:
 
 
 ```ruby
 ...
-end.run(path: 'C/Program Files/JMeter-2.13/bin/', gui: true)
+end.run(path: 'C/Program Files/JMeter/bin/', gui: true)
 ```

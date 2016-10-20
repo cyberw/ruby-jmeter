@@ -161,6 +161,8 @@
   `debug_postprocessor`
 - JDBC PostProcessor
   `jdbc_postprocessor`
+- JSON Path PostProcessor
+  `json_path_postprocessor`
 - JSR223 PostProcessor
   `jsr223_postprocessor`
 - Regular Expression Extractor
@@ -181,10 +183,6 @@
   `html_assertion`
 - JSR223 Assertion
   `jsr223_assertion`
-- JSR223 Assertion
-  `jsr223_assertion`
-- MD5Hex Assertion
-  `md5hex_assertion`
 - MD5Hex Assertion
   `md5hex_assertion`
 - Response Assertion
